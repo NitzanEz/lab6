@@ -1,1 +1,1 @@
-permalink: /index_.html
+permalink: /index.html
