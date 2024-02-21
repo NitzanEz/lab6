@@ -20,7 +20,7 @@
         const createTable = (data) => {
             const table = $('<table/>').addClass("border border-gray-300 w-full")
             table.append(row(["title","price","brand"],true))
-            Object.values(data).forEach(asset => {
+            Object.values(data).slice(0, 10).forEach(asset => {
                 table.append(row([asset.title,asset.price,asset.brand]))
             })
             return table
