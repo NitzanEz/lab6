@@ -1,1 +1,1 @@
-# lab6
+permalink: /index.html
