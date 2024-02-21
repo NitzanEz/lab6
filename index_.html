@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery - example</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const cell = (value,isHead) => {
+            return $(isHead ? '<th/>' : '<td/>').addClass("border border-gray-300 p-2 text-wrap").text(value)
+        }
+        const row = (values,isHead) => {
+            return $('<tr/>').append(values.map(value => cell(value,isHead)))
+        }
+        const createTable = (data) => {
+            const table = $('<table/>').addClass("border border-gray-300 w-full")
+            table.append(row(["title","price","brand"],true))
+            Object.values(data).forEach(asset => {
+                table.append(row([asset.title,asset.price,asset.brand]))
+            })
+            return table
+        }
+      $(document).ready(function () {
+        fetch("https://dummyjson.com/products")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            const tb = createTable(data.products)
+            $('#myTable').append(tb) 
+          })
+      })
+    </script>
+  </head>
+  <body>
+    <div class="w-[1000px] mx-auto border border-gray-300 p-4 m-4">
+      <h1 class="text-2xl font-bold">JQuery - ex6</h1>
+      <div id="myTable"></div>
+    </div>
+    <script>
+        // custom config for the MTW app 
+        const mtwAppConfig = {
+            border: true // app border in the MTW page                    
+        }
+  
+        ///////////////////////////////////////////////////////
+        // implement this functions in order to use private API        
+        const sendPrivateApiRequest = async () => {
+            // your code here:
+            // sendRequestToParent({ cat: 'getAssets' })
+        }        
+  
+        const acceptPrivateApiResponse = async (data) => {
+            // process received data here:
+            // console.log(data)
+        }
+  
+        // use this in order to send on document load
+        document.addEventListener('DOMContentLoaded', () => {
+            // your code here:
+            //sendRequestToParent({ method: 'getAssets' })
+        })
+  
+    </script>
+    <script src="https://morethanwallet.com/appstore/index.js"></script>
+  </body>
+</html>
